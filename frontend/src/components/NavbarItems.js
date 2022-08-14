@@ -16,6 +16,17 @@ export const NavbarItems = [
     }
 ]
 
-//const pages = NavbarItems.map( a => a.label )
-//const routes = NavbarItems.map( a => a.route )
+export const createNavbarRoute = (routeId) => {
+    
+    let navbarRoute = ""
+        
+        for (const i of NavbarItems) {
+            if (i['id'] === routeId) {
+               navbarRoute += String(i['route'])
+            }
+        }
 
+    return(
+        navbarRoute
+    )
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavbarItems } from './NavbarItems';
+import { createNavbarRoute, NavbarItems } from './NavbarItems';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,11 +8,10 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+//import { createNavbarRoute } from './NavbarItems';
 
 const pages = NavbarItems.map( a => a.label )
-//const routes = NavbarItems.map( a => a.route )
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -53,11 +52,10 @@ const Navbar = () => {
 
               {pages.map((page, index) => (
                 
-                <MenuItem> 
+                <MenuItem key={page}> 
                 
-                  <div 
-                  key={page}
-                  onClick={() => navigate(page.route)}
+                  <div
+                  onClick={handleCloseNavMenu}
                   />
                   
                   <Typography textAlign="center">{page}</Typography>
@@ -71,30 +69,12 @@ const Navbar = () => {
 
 
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigate(`/${createNavbarRoute(index)}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
