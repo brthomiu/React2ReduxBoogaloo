@@ -19,7 +19,7 @@ import * as fireorm from 'fireorm';
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyDZN8Sphormc7F3WyJ0lypDfl0NHRfRmd8",
+  apiKey: process.env.FIRESTORE_KEY,
 
   authDomain: "node2-1ebc3.firebaseapp.com",
 
